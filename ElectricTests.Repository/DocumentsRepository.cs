@@ -4,7 +4,12 @@ using ElectricTests.Model;
 
 namespace ElectricTests.Repository
 {
-	public class DocumentsRepository {
+    public interface IDocumentsRepository
+    {
+        List<FormattedDocument> GetAllFormattedDocuments();
+    }
+
+	public class DocumentsRepository : IDocumentsRepository {
 
 		/// <summary>
 		/// Get all formatted documents without paragraphs
