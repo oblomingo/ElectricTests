@@ -1,0 +1,24 @@
+﻿@model ElectricTests.Model.Test
+
+@{
+	ViewBag.Title = "AddQuestions";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm()) {
+	@Html.ValidationSummary(true)
+	@Html.ValueFor(t => t.Title)
+	@Html.HiddenFor(t => t.Title)
+	@Html.HiddenFor(t => t.Id)
+	@Html.HiddenFor(t => t.IsAvaible)
+	@Html.HiddenFor(t => t.OneTestQuestionsNumber)
+	<fieldset>
+		<table class="twelve columns">
+			@foreach (Question question in Model.Questions) {
+				<tr >
+					@{ Html.RenderPartial("_ShowQuestionInTable", question); }
+				</tr>
+			}
+		</table>
+		<input type="submit" value="Pridėti klausimus" class="button"/>
+	</fieldset>
+}

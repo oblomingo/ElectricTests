@@ -1,0 +1,93 @@
+﻿@model ElectricTests.Model.Question
+
+@{
+	ViewBag.Title = "Klausimų taisymas";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Klausimų taisymas</h2>
+
+@using (Html.BeginForm()) {
+	@Html.ValidationSummary(true)
+
+	<fieldset>
+		<legend>Taisymo forma</legend>
+
+		@Html.HiddenFor(model => model.Id)
+		@Html.HiddenFor(model => model.FormattedDocumentId)
+
+		
+		@if (Model.ParagraphId != null) { 
+		<div>
+				<strong>@Model.Paragraph.Document.Title</strong><br />
+				<strong>(@Model.Paragraph.Id.ToString()) </strong>@Model.Paragraph.Number. @Model.Paragraph.Text<br />
+				@ShowParagraphs(Model.Paragraph.Paragraphs, Model.Paragraph.Number.ToString())
+				@helper ShowParagraphs (ICollection<Paragraph> AllParagraphs, string parentParagraphNumber = "") {
+					foreach (var paragraph in AllParagraphs) {
+						@((parentParagraphNumber == "") ? paragraph.Number.ToString() : parentParagraphNumber +"."+ paragraph.Number.ToString() + ". ") 
+							@Html.Raw(paragraph.Text.Replace("\r\n", "<br />"))<br />
+						if (@paragraph.Paragraphs != null) {
+							@ShowParagraphs(paragraph.Paragraphs, (parentParagraphNumber == "") ? 
+																	paragraph.Number.ToString() : 
+																	parentParagraphNumber +"."+ paragraph.Number.ToString())
+						}
+					}
+				}
+		</div>
+		<br />
+		<div class="editor-label">
+			@Html.LabelFor(model => model.ParagraphId)
+		</div>
+		  <div class="editor-field">
+				@Html.EditorFor(model => model.ParagraphId)
+				@Html.ValidationMessageFor(model => model.ParagraphId)
+		  </div>
+		}
+
+		Klausimas
+		<div class="editor-field">
+			@Html.EditorFor(model => model.Title)
+			@Html.ValidationMessageFor(model => model.Title)
+		</div>
+
+		Teisingas
+		<div class="editor-field">
+			@Html.EditorFor(model => model.Option1)
+			@Html.ValidationMessageFor(model => model.Option1)
+		</div>
+
+		Antras
+		<div class="editor-field">
+			@Html.EditorFor(model => model.Option2)
+			@Html.ValidationMessageFor(model => model.Option2)
+		</div>
+
+		Trečias
+		<div class="editor-field">
+			@Html.EditorFor(model => model.Option3)
+			@Html.ValidationMessageFor(model => model.Option3)
+		</div>
+
+		Ketvirtas
+		<div class="editor-field">
+			@Html.EditorFor(model => model.Option4)
+			@Html.ValidationMessageFor(model => model.Option4)
+		</div>
+		Paaiškinimas
+		<div class="editor-field">
+			@Html.EditorFor(model => model.AnswerDescription)
+			@Html.ValidationMessageFor(model => model.AnswerDescription)
+		</div>
+
+		<p>
+			<input type="submit" value="Save" class="button"/>
+		</p>
+	</fieldset>
+}
+<div>
+	@Html.ActionLink("Visi klausimai", "Index")
+</div>
+
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+}

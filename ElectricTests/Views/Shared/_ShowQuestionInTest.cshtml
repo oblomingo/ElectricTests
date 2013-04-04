@@ -1,0 +1,23 @@
+﻿@model ElectricTests.Model.Question
+<div class="questionInTest" id="@Model.Id">
+	<h4>@Html.DisplayFor(model => model.Title)</h4>
+	<div id="options">
+			<div class="testOption" onclick="selectOption(1);" id="option1">
+				@Html.Raw(@Model.Option1.Replace("\r\n", "<br />"))
+			</div>
+			<div class="testOption" onclick="selectOption(2);" id="option2">
+				@Html.Raw(@Model.Option2.Replace("\r\n", "<br />"))
+			</div>
+			@if (Model.Option3 != null) {
+				<div class="testOption" onclick="selectOption(3);" id="option3">
+				@Html.Raw(@Model.Option3.Replace("\r\n", "<br />"))
+				</div>
+			}
+			@if (Model.Option4 != null) {
+			<div class="testOption" onclick="selectOption(4);" id="option4">
+				@Html.Raw(@Model.Option4.Replace("\r\n", "<br />"))
+			</div>
+			}
+		</div>
+</div>
+

@@ -1,0 +1,123 @@
+/* Artfully masterminded by ZURB  */
+
+/* -------------------------------------------------- 
+   Table of Contents
+-----------------------------------------------------
+:: Shared Styles
+:: Page Name 1
+:: Page Name 2
+*/
+
+
+/* -----------------------------------------
+   Shared Styles
+----------------------------------------- */
+html, body {
+    height: 100%;
+}
+
+.container {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -40px;
+}
+
+.footer {
+    height: 40px;
+}
+.paragraphText {
+    position:relative;
+}
+
+.paragraphMenu {
+    position: absolute; 
+    top: 5px; 
+    right: 5px;
+    display:none;
+    cursor:pointer;
+}
+
+.addQuestionForm {
+    position: absolute;
+    left: 200px;
+    background: #F2F2F2;
+    border: 1px solid #dddddd;
+    display:none;
+}
+
+.infoMessageWindow {
+    position: absolute;
+    left: 300px;
+    background: #F2F2F2;
+    border: 1px solid #dddddd;
+    display:none;
+    text-align:center;
+    
+}
+
+.testOption {
+    border: 1px solid grey;
+    padding:20px;
+    width: 450px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    float:left;
+}
+
+.correctAnswer {
+    background: #CCFFE0;
+}
+
+.incorrectAnswer {
+    background: #FFCCD2;
+}
+
+.descriptionToAnswer {
+    background: #CCF6FF;
+}
+
+.questionInTest {
+    display:none;
+    width: 920px;
+    float:right;
+
+}
+
+.questionContainer {
+}
+
+#results {
+    display:none;
+}
+
+#resultTable {
+    width: 920px;
+}
+
+#progress {
+    margin-bottom:10px;
+    height:10px;
+    width:1px;
+    background: #12D4FF ;
+}
+
+.helpImages {
+    margin-top: 10px;
+    margin-bottom:10px;
+    border:1px solid #dddddd; 
+}
+
+
+/* -----------------------------------------
+   Page Name 1
+----------------------------------------- */
+
+
+
+
+/* -----------------------------------------
+   Page Name 2
+----------------------------------------- */
+
+

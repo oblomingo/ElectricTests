@@ -1,0 +1,21 @@
+﻿@model Question
+@using (Html.BeginCollectionItem("Questions")) { 
+    <td>@Html.ValueFor(m => m.Title)</td>
+    <td>@Html.CheckBoxFor(m => m.InThisTest)</td>
+    @Html.HiddenFor(m => m.Title)
+    @Html.HiddenFor(model => model.FormattedDocumentId)
+    @Html.HiddenFor(model => model.ParagraphId)
+    @Html.HiddenFor(model => model.AnswerDescription)
+    @Html.HiddenFor(model => model.Category)
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.ImageUrl)
+    @Html.HiddenFor(model => model.Option1)
+    @Html.HiddenFor(model => model.Option2)
+    @Html.HiddenFor(model => model.Option3)
+    @Html.HiddenFor(model => model.Option4)
+    @Html.HiddenFor(model => model.OptionSelected)
+    @Html.HiddenFor(model => model.ParagraphsMarkIn)
+    @Html.HiddenFor(model => model.ParagraphsMarkOut)
+    @Html.HiddenFor(model => model.VoltageClass)
+}
+

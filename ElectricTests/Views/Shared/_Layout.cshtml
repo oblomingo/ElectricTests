@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="lt">
+	<head>
+		<meta charset="utf-8" />
+		<title>@ViewBag.Title - My ASP.NET MVC Application</title>
+		<link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+		<meta name="viewport" content="width=device-width" />
+		@Styles.Render("~/Content/stylesheets/foundation.min.css")
+		@Styles.Render("~/Content/stylesheets/app.css")
+		@Scripts.Render("~/Content/javascripts/modernizr.foundation.js")
+	</head>
+	<body>
+		<div class="container">
+			<header>
+				<div class="row">
+					<div class="three columns">
+						<a href="@Url.Action("Index", "Home")"><img src="@Url.Content("~/Content/images/shock.png")" alt="Home" /></a>
+
+					</div>
+					<div class="nine columns">
+						<ul class="nav-bar right">
+							<li>@Html.ActionLink("Pagrindinis", "Index", "Home")</li>
+							<li>@Html.ActionLink("Dokumentai", "Index", "Documents")</li>
+							<li>@Html.ActionLink("Testavimas", "Index", "Tests")</li>
+							<li>@Html.ActionLink("Pagalba", "Index", "Help")</li>
+						</ul>
+					</div>
+				</div>
+			</header>
+			<div class="row">
+				@RenderSection("featured", required: false)
+				@RenderBody()
+			</div>
+		</div>
+		<footer class="row footer">
+			<div class="twelve columns">
+				<div class="six columns">
+					<p>© Aleksandr Suchovarov, 2013</p>
+				</div>
+				<div class="six columns">
+					@if (Request.IsAuthenticated) {
+						using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" })) {
+							@Html.AntiForgeryToken()
+							<ul class="link-list right">
+								<li>@Html.ActionLink("Nustatymai", "Manage", "Account")</li>
+								<li>@Html.ActionLink("Klausimai", "Index", "Questions")</li>
+								<li><a href="javascript:document.getElementById('logoutForm').submit()">Išeiti</a></li>
+							</ul>
+						}
+						
+					} else {
+						<ul class="link-list right">
+							<li>@Html.ActionLink("Įeiti", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+						</ul>
+					}
+				</div>
+			</div>
+		</footer>
+		@Scripts.Render("~/Content/javascripts/jquery")
+		@RenderSection("scripts", required: false)
+	</body>
+</html>

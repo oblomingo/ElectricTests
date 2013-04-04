@@ -1,0 +1,69 @@
+﻿@model IEnumerable<ElectricTests.Model.Question>
+@{
+	ViewBag.Title = "Klausimų suvestinė";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Klausimų suvestinė</h2>
+<table>
+	<tr>
+		<th>PId</th>
+		<th>Klausimas</th>
+		<th>Teisingas</th>
+		<th>Antras</th>
+		<th>Trečias</th>
+		<th>Ketvirtas</th>
+		<th>Paaiškinimas</th>
+		<th></th>
+	</tr>
+@foreach (var item in Model) {
+	if (item.ParagraphId != null) { 
+	<tr>
+		<td colspan="10">
+			<strong>@item.Paragraph.Document.Title</strong><br />
+			<strong>(@item.Paragraph.Id.ToString()) </strong>@item.Paragraph.Number. @item.Paragraph.Text<br />
+			@ShowParagraphs(item.Paragraph.Paragraphs, item.Paragraph.Number.ToString())
+			@helper ShowParagraphs (ICollection<Paragraph> AllParagraphs, string parentParagraphNumber = "") {
+				foreach (var paragraph in AllParagraphs) {
+					@((parentParagraphNumber == "") ? paragraph.Number.ToString() : parentParagraphNumber +"."+ paragraph.Number.ToString() + ". ") 
+						@Html.Raw(paragraph.Text.Replace("\r\n", "<br />"))<br />
+					if (@paragraph.Paragraphs != null) {
+						@ShowParagraphs(paragraph.Paragraphs, (parentParagraphNumber == "") ? 
+																paragraph.Number.ToString() : 
+																parentParagraphNumber +"."+ paragraph.Number.ToString())
+					}
+				}
+			}
+		</td>
+	</tr>
+	}
+	<tr>
+		<td>
+			@Html.DisplayFor(modelItem => item.ParagraphId)
+		</td>
+		<td>
+			<strong>@Html.DisplayFor(modelItem => item.Title)</strong>
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.Option1)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.Option2)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.Option3)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.Option4)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.AnswerDescription)
+		</td>
+		<td>
+			@Html.ActionLink("Taisyti", "Edit", new { id=item.Id })
+			@Html.ActionLink("Trinti", "Delete", new { id=item.Id })
+		</td>
+	</tr>
+}
+
+</table>
