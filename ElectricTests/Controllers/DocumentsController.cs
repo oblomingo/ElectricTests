@@ -11,18 +11,17 @@ namespace ElectricTests.Controllers
 		//
 		// GET: /Documents/
 
-        private IDocumentsRepository _repository;
+		private IDocumentsRepository _repository;
 
-        public DocumentsController(IDocumentsRepository repository, UnityContainer container)
-        {
-            container.Resolve<IDocumentsRepository>();
-            _repository = repository;
-        }
+		public DocumentsController(IDocumentsRepository repository)
+		{
+			_repository = repository;
+		}
 
 		public ActionResult Index()
 		{
 			//DocumentsRepository reposytory = new DocumentsRepository();
-            List<FormattedDocument> documents = _repository.GetAllFormattedDocuments(); 
+			List<FormattedDocument> documents = _repository.GetAllFormattedDocuments(); 
 			return View(documents);
 		}
 
