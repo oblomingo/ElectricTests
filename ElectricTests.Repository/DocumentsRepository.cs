@@ -7,6 +7,7 @@ namespace ElectricTests.Repository
     public interface IDocumentsRepository
     {
         List<FormattedDocument> GetAllFormattedDocuments();
+        FormattedDocument GetDocumentById(int id);
     }
 
 	public class DocumentsRepository : IDocumentsRepository {
@@ -27,18 +28,21 @@ namespace ElectricTests.Repository
 		/// <summary>
 		/// Get document by id with sorted by numbers paragraphs 
 		/// </summary>
-		/// <param name="Id"></param>
+		/// <param name="id"></param>
 		/// <returns></returns>
-		public FormattedDocument GetDocumentByID(int Id) {
+		public FormattedDocument GetDocumentById(int id) {
 			using (var context = new ProjectContext()) {
 				FormattedDocument document = context.FormattedDocuments
 					.Include("Paragraphs")
-					.SingleOrDefault(c => c.Id == Id);
+					.SingleOrDefault(c => c.Id == id);
+
+                //Set navigation properties to null to avoid javascript error 
+                //"A circular reference was detected while serializing an object of type"
 				if (document != null) 
 					document.Sections = null;
 
 				if (document != null) {
-					document.Paragraphs = GetParagraphsByDocumentId(Id);
+					document.Paragraphs = GetParagraphsByDocumentId(id);
 				}
 				return document;
 				
@@ -47,14 +51,14 @@ namespace ElectricTests.Repository
 		/// <summary>
 		/// Get sorted paragraphs by numbers without navigation properties 
 		/// </summary>
-		/// <param name="Id"></param>
+		/// <param name="id"></param>
 		/// <returns></returns>
-		public ICollection<Paragraph> GetParagraphsByDocumentId(int Id) {
+		public ICollection<Paragraph> GetParagraphsByDocumentId(int id) {
 			using (var context = new ProjectContext()) {
 				var paragraphs = context.Paragraphs
 					//Deepest hierarhic level - 5 (it's depends on regular expression template)
 					.Include("Paragraphs.Paragraphs.Paragraphs.Paragraphs.Paragraphs")
-					.Where(c => c.FormattedDocumentId == Id)
+					.Where(c => c.FormattedDocumentId == id)
 					.Where(c => c.ParagraphId == null)
 					.OrderBy(c => c.Number)
 					.ToList();

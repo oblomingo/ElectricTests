@@ -24,6 +24,8 @@ namespace ElectricTests.Model
 			Option2 = option2;
 			Option3 = option3;
 			Option4 = option4;
+		    ImageUrl = imageUrl;
+		    AnswerDescription = answerDescription;
 		}
 
 		public Question(string title, string answerDescription) {

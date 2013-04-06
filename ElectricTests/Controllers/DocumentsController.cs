@@ -1,84 +1,72 @@
-﻿using System.Collections.Generic;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using ElectricTests.Model;
 using ElectricTests.Repository;
-using Microsoft.Practices.Unity;
 
-namespace ElectricTests.Controllers
-{
-	public class DocumentsController : Controller
-	{
-		//
-		// GET: /Documents/
+namespace ElectricTests.Controllers {
+    public class DocumentsController : Controller {
 
-		private IDocumentsRepository _repository;
+        private readonly IDocumentsRepository _repository;
 
-		public DocumentsController(IDocumentsRepository repository)
-		{
-			_repository = repository;
-		}
+        public DocumentsController(IDocumentsRepository repository) {
+            //Get documents repository object (Unity) 
+            _repository = repository;
+        }
 
-		public ActionResult Index()
-		{
-			//DocumentsRepository reposytory = new DocumentsRepository();
-			List<FormattedDocument> documents = _repository.GetAllFormattedDocuments(); 
-			return View(documents);
-		}
+        /// <summary>
+        /// Show all formatted documents
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Index() {
+            return View(_repository.GetAllFormattedDocuments());
+        }
 
-		/// <summary>
-		/// Show add document form
-		/// </summary>
-		/// <returns></returns>
-		[HttpGet]
-		[Authorize]
-		public ActionResult Add() {
-			return View();
-		}
+        /// <summary>
+        /// Show add document form
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Authorize]
+        public ActionResult Add() {
+            return View();
+        }
 
-		/// <summary>
-		/// Format text to formatted document, save it to the FormattedDocuments table and view saved document 
-		/// </summary>
-		/// <param name="document"></param>
-		/// <returns></returns>
-		[HttpPost]
-		[Authorize]
-		public ActionResult Add (UnformattedDocument document) {
-			if (ModelState.IsValid) 
-			{
-				//Format text 
-				FormattedDocument formattedDocument = new FormattedDocument(
-					document.Title, 
-					document.WithSections,
-					(new STProcessor()).GetParagraphsFromText(document.Text)
-					);
+        /// <summary>
+        /// Format text to formatted document, save it to the FormattedDocuments table and view saved document 
+        /// </summary>
+        /// <param name="document"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Authorize]
+        public ActionResult Add(UnformattedDocument document) {
+            if (ModelState.IsValid) {
+                //Format text to formatted document object
+                var formattedDocument = new FormattedDocument(
+                    document.Title,
+                    document.WithSections,
+                    (new STProcessor()).GetParagraphsFromText(document.Text));
 
-				FormattedDocument savedDocument;
+                FormattedDocument savedDocument;
 
-				using (var pContext = new ProjectContext())
-				{
-					//Save to db and get id
-					pContext.FormattedDocuments.Add(formattedDocument);
-					pContext.SaveChanges();
-					int id = formattedDocument.Id;
+                using (var pContext = new ProjectContext()) {
+                    //Save to db and get id
+                    pContext.FormattedDocuments.Add(formattedDocument);
+                    pContext.SaveChanges();
+                    
+                    //Get new document to show it in Details controller
+                    savedDocument = _repository.GetDocumentById(formattedDocument.Id);
+                }
+                return View("Details", savedDocument);
+            }
+            return View();
+        }
 
-					//View saved document
-					DocumentsRepository dRepository = new DocumentsRepository();
-					savedDocument = dRepository.GetDocumentByID(id);
-				}
-				return View("Details", savedDocument);
-			}
-			return View();
-		}
-
-		/// <summary>
-		/// View formatted document with all sorted paragraphs
-		/// </summary>
-		/// <param name="Id"></param>
-		/// <returns></returns>
-		public ActionResult Details(int Id) {
-			var reposytory = new DocumentsRepository();
-			FormattedDocument document = reposytory.GetDocumentByID(Id);
-			return View(document);
-		}
-	}
+        /// <summary>
+        /// View formatted document with all sorted paragraphs
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult Details(int id) {
+            return View(_repository.GetDocumentById(id));
+        }
+    }
 }

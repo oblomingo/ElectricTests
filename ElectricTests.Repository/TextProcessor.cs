@@ -41,7 +41,7 @@ namespace ElectricTests.Repository
 			foreach (string paragraphString in paragraphs) 
 			{
 				//If paragraph having a paragraph number ...
-				if (splitStringToParagraph(paragraphString)) 
+				if (SplitStringToParagraph(paragraphString)) 
 				{
 					//...and we have previous paragraph then we must save old one to the list
 					if (PreviousParagraph != null) {
@@ -75,7 +75,7 @@ namespace ElectricTests.Repository
 		/// </summary>
 		/// <param name="paragraphString"></param>
 		/// <returns></returns>
-		public bool splitStringToParagraph(string paragraphString) {
+		public bool SplitStringToParagraph(string paragraphString) {
 			
 			
 			Match match = MatchToParagraph(paragraphString);
@@ -87,7 +87,7 @@ namespace ElectricTests.Repository
 				const int maxParagraphDeep = 5;
 
 				//List for saving and format parent paragraph number
-				List<string> paragraphNumbers = new List<string>();
+				var paragraphNumbers = new List<string>();
 				for (var i = 1; i < maxParagraphDeep; i++ ) {
 					if(match.Groups[i].Success) {
 						paragraphNumbers.Add(match.Groups[i].ToString());

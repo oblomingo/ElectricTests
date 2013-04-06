@@ -23,16 +23,16 @@ namespace ElectricTests.Model
 		public int? SectionId { get; set; }
 		public int? ParagraphId { get; set; }
 
+        //Parent paragraph number (not id)
 		[NotMapped]
 		public string ParentNumber { get; set; }
 
+        //Full path paragraph number (for view)
 		[NotMapped]
 		public string FullNumber { get; set; }
-
-/*		public Paragraph ParentParagraph { get; set; }*/
 		
+        //Navigation properties
 		public FormattedDocument Document { get; set; }
-
 		public ICollection<Question> Questions { get; set; } 
 		public ICollection<Paragraph> Paragraphs { get; set; }
 	}
