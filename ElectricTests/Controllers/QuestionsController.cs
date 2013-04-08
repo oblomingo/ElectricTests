@@ -13,7 +13,7 @@ namespace ElectricTests.Controllers {
 
         //
         // GET: /Questions/
-        [Authorize]
+        [Authorize(Users="Aleksandr")]
         public ActionResult Index() {
             return View(_repository.GetAllQuestions());
         }
@@ -50,7 +50,7 @@ namespace ElectricTests.Controllers {
         /// <param name="question"></param>
         /// <returns></returns>
         [HttpPost]
-        [Authorize]
+        [Authorize(Users = "Aleksandr")]
         public ActionResult Edit(Question question) {
             if (ModelState.IsValid) {
                 if (_repository.SaveQuestionChanges(question))
@@ -64,7 +64,7 @@ namespace ElectricTests.Controllers {
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Authorize]
+        [Authorize(Users = "Aleksandr")]
         public ActionResult Delete(int id) {
             _repository.DeleteQuestion(id);
             return RedirectToAction("Index", "Questions");

@@ -25,7 +25,7 @@ namespace ElectricTests.Controllers {
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Authorize]
+        [Authorize(Users = "Aleksandr")]
         public ActionResult Add() {
             return View();
         }
@@ -36,7 +36,7 @@ namespace ElectricTests.Controllers {
         /// <param name="document"></param>
         /// <returns></returns>
         [HttpPost]
-        [Authorize]
+        [Authorize(Users = "Aleksandr")]
         public ActionResult Add(UnformattedDocument document) {
             if (ModelState.IsValid) {
                 //Format text to formatted document object
