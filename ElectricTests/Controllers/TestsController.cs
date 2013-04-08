@@ -7,7 +7,7 @@ namespace ElectricTests.Controllers
 	public class TestsController : Controller {
 
 	    private readonly ITestRepository _repository;
-        public TestsController(ITestRepository repository) {
+        public TestsController (ITestRepository repository) {
             //Save TestRepository object (Unity)
             _repository = repository;
         }
@@ -39,7 +39,7 @@ namespace ElectricTests.Controllers
 				using (var pContext = new ProjectContext()) {
 					pContext.Tests.Add(test);
 					pContext.SaveChanges();
-					return RedirectToAction("AddQuestions", new { id = test.Id });
+					return RedirectToAction("AddQuestions", new { id = test.Id});
 				}
 			}
 			return View();
@@ -55,19 +55,20 @@ namespace ElectricTests.Controllers
 		public ActionResult AddQuestions (int id) {
 			return View(_repository.GetTestAndAllQuestions(id));
 		}
-
+                                                                                                            
         /// <summary>
         /// Add questions to test and save changes to db
         /// </summary>
-        /// <param name="test"></param>
+        /// <param name="test"></param> 
         /// <returns></returns>
 		[HttpPost]
 		[Authorize]
 		public ActionResult AddQuestions (Test test) {
-			if (ModelState.IsValid) {
+            if (ModelState.IsValid) {
 				_repository.SaveTestToDb(test);
+                ViewBag.ChangedState = true;
 			}
-			return RedirectToAction("AddQuestions", new { id = test.Id });
+            return View(test);
 		}
 
 

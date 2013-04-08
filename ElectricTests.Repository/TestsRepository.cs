@@ -122,6 +122,8 @@ namespace ElectricTests.Repository {
         /// </summary>
         /// <param name="updatedTest"></param>
         public void SaveTestToDb(Test updatedTest) {
+
+            //Copy to array all questions where InThistest is true (this questions are selected to test) 
             int[] idArray = (from q in updatedTest.Questions
                              where q.InThisTest
                              select q.Id).ToArray();
