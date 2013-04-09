@@ -1,11 +1,10 @@
 ﻿@using System.Web.Script.Serialization
 @model Test
-@Scripts.Render("~/Scripts/jquery-1.9.1.js")
-@Scripts.Render("~/Scripts/jquery-ui-1.8.17.js")
+@Scripts.Render("~/Scripts/jquery-1.7.1.js")
+@Scripts.Render("~/Scripts/jquery-ui-1.8.20.min.js")
 @Scripts.Render("~/Content/javascripts/foundation.min.js")
-<script type="text/javascript">var questions = @Html.Raw((new JavaScriptSerializer().Serialize(Model.Questions)))</script>
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 @Scripts.Render("~/Content/javascripts/Paragraph/showTest.js")
+<script type="text/javascript">var questions = @Html.Raw((new JavaScriptSerializer().Serialize(Model.Questions)))</script>
 @{
 	ViewBag.Title = @Model.Title;
 	Layout = "~/Views/Shared/_Layout.cshtml";
