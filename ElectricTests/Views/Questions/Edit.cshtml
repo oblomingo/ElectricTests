@@ -12,11 +12,9 @@
 
 	<fieldset>
 		<legend>Taisymo forma</legend>
-
 		@Html.HiddenFor(model => model.Id)
 		@Html.HiddenFor(model => model.FormattedDocumentId)
 
-		
 		@if (Model.ParagraphId != null) { 
 		<div>
 				<strong>@Model.Paragraph.Document.Title</strong><br />

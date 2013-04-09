@@ -9,7 +9,7 @@
 }
 @using (Html.BeginForm()) {
 	@Html.ValidationSummary(true)
-	@Html.ValueFor(t => t.Title)
+	@Html.DisplayFor(t => t.Title)
 	@Html.HiddenFor(t => t.Title)
 	@Html.HiddenFor(t => t.Id)
 	<fieldset>

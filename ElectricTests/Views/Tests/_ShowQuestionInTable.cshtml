@@ -1,6 +1,6 @@
 ﻿@model Question
 @using (Html.BeginCollectionItem("Questions")) { 
-    <td>@Html.ValueFor(m => m.Title)</td>
+    <td>@Html.DisplayFor(m => m.Title)</td>
     <td>@Html.CheckBoxFor(m => m.InThisTest)</td>
     @Html.HiddenFor(model => model.Title)
     @Html.HiddenFor(model => model.Id)
