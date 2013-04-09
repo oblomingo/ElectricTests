@@ -66,7 +66,11 @@ namespace ElectricTests.Controllers {
         /// <param name="id"></param>
         /// <returns></returns>
         public ActionResult Details(int id) {
-            return View(_repository.GetDocumentById(id));
+            Document document = _repository.GetDocumentById(id);
+            if (document == null) {
+                return RedirectToAction("Index");
+            }
+            return View(document);
         }
     }
 }

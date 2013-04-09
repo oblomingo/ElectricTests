@@ -13,23 +13,40 @@ namespace ElectricTests
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //routes.MapRoute(
+            //    name: "Tests",
+            //    url: "Tests/{id}",
+            //    defaults: new { controller = "Tests", action = "Show", id = @"/d+" }
+            //);
+            /*routes.MapRoute(
+                name: "DocumentsActions",
+                url: "Documents/Add",
+                defaults: new { controller = "Documents", action = "Add"}
+            );
+            */
             routes.MapRoute(
                 name: "Tests",
-                url: "Tests/{id}",
-                defaults: new { controller = "Tests", action = "Show" }
+                url: "{controller}/{id}",
+                defaults: new { controller = "Tests", action = "Show"},
+                constraints: new { controller = "Tests", action = "Show", id = @"\d+" }
             );
+
 
             routes.MapRoute(
                 name: "Documents",
-                url: "Documents/{id}",
-                defaults: new { controller = "Documents", action = "Details" }
+                url: "{controller}/{id}",
+                defaults: new { controller = "Documents", action = "Details"},
+                constraints: new { controller = "Documents", action = "Details", id=@"\d+"  }
             );
+
 
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+
         }
     }
 }

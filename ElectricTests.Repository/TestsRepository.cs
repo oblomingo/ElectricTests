@@ -41,10 +41,10 @@ namespace ElectricTests.Repository {
                     Where(q => q.Tests.Select(o => o.Id).Contains(test.Id)).
                     Take(test.OneTestQuestionsNumber).
                     ToList();
-            }
 
-            //To avoid javascript error "A circular reference was detected while serializing an object of type"
-            test = SetQuestionNavPropToNull(test);
+                //To avoid javascript error "A circular reference was detected while serializing an object of type"
+                test = SetQuestionNavPropToNull(test);
+            }
             return test;
         }
 

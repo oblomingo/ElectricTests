@@ -9,32 +9,32 @@
 			<legend>Įveskite klausimą ir atsakymo variantus</legend>
 			Klausimas
 			<div>
-				@Html.TextAreaFor(model => model.Title)
+				@Html.TextAreaFor(model => model.Title, new {rows = 4})
 				@Html.ValidationMessageFor(model => model.Title)
 			</div>
 			Pirmas atsakymo variantas (teisingas)
 			<div>
-				@Html.TextAreaFor(model => model.Option1)
+				@Html.TextAreaFor(model => model.Option1, new {rows = 4})
 				@Html.ValidationMessageFor(model => model.Option1)
 			</div>
 			Antras atsakymo variantas
 			<div>
-				@Html.TextAreaFor(model => model.Option2)
+				@Html.TextAreaFor(model => model.Option2, new {rows = 4})
 				@Html.ValidationMessageFor(model => model.Option2)
 			</div>
 			Trečias atsakymo variantas (nebūtinas)
 			<div>
-				@Html.TextAreaFor(model => model.Option3)
+				@Html.TextAreaFor(model => model.Option3, new {rows = 4})
 				@Html.ValidationMessageFor(model => model.Option3)
 			</div>
 			Ketvirtas atsakymo variantas (nebūtinas)
 			<div>
-				@Html.TextAreaFor(model => model.Option4)
+				@Html.TextAreaFor(model => model.Option4, new {rows = 4})
 				@Html.ValidationMessageFor(model => model.Option4)
 			</div>
 			Klausimo paaiškinimas
 			<div>
-				@Html.TextAreaFor(model => model.AnswerDescription)
+				@Html.TextAreaFor(model => model.AnswerDescription, new {rows = 4})
 				@Html.ValidationMessageFor(model => model.AnswerDescription)
 			</div>
 			<input value="Įkelti klausymą" class="button" onclick="validateAndSendObject($('form').serialize(), true);"/>

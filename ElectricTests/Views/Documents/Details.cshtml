@@ -18,13 +18,14 @@
 					<tr>
 						<td width="50" id="number_@paragraph.Id">@((parentParagraphNumber == "") ?
 																		paragraph.Number.ToString() :
-																		parentParagraphNumber + "." + paragraph.Number.ToString()).
-
+																		parentParagraphNumber + "." +
+																		paragraph.Number.ToString()).
 						</td>
 						<td  class="paragraphText">
 							<div id="@paragraph.Id">@Html.Raw(paragraph.Text.Replace("\r\n", "<br />"))</div>
 							<div class="paragraphMenu" id="menu_@paragraph.Id">
-								<a href="#" data-reveal-id="addQuestionForm" onclick=" openForm('@paragraph.Id', '@paragraph.Number'); ">
+								<a href="#" data-reveal-id="addQuestionForm" onclick=" openForm('@paragraph.Id',
+																						'@paragraph.Number'); ">
 									<img src="@Url.Content("~/Content/images/icons/add.png")" alt="Add" />
 								</a>
 							</div>     
@@ -33,7 +34,8 @@
 					if (@paragraph.Paragraphs != null) {
 						@ShowParagraphs(paragraph.Paragraphs, (parentParagraphNumber == "") ?
 																	paragraph.Number.ToString() :
-																	parentParagraphNumber + "." + paragraph.Number.ToString())
+																	parentParagraphNumber + "." +
+																	paragraph.Number.ToString())
 					}
 				}
 			}
