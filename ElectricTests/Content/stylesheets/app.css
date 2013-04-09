@@ -108,6 +108,9 @@ html, body {
     border:1px solid #dddddd; 
 }
 
+.selected {
+    background: #808080 ;
+}
 
 /* -----------------------------------------
    Page Name 1

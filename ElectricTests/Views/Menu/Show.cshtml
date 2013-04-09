@@ -1,0 +1,15 @@
+﻿@model Dictionary<string, string>
+<ul class="nav-bar right">
+    @foreach (KeyValuePair<string, string> pair in Model) { 
+        <li>
+            @Html.RouteLink(pair.Key,
+            new {
+                controller = @pair.Value,
+                action = "Index"
+            },
+            new {
+                @class = @pair.Value == @ViewBag.ControllerName ? "selected" : null
+            })
+        </li>
+    }
+</ul>

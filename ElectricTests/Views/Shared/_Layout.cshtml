@@ -18,12 +18,8 @@
 
 					</div>
 					<div class="nine columns">
-						<ul class="nav-bar right">
-							<li>@Html.ActionLink("Pagrindinis", "Index", "Home")</li>
-							<li>@Html.ActionLink("Dokumentai", "Index", "Documents")</li>
-							<li>@Html.ActionLink("Testavimas", "Index", "Tests")</li>
-							<li>@Html.ActionLink("Pagalba", "Index", "Help")</li>
-						</ul>
+						@Html.Action("Show", "Menu", 
+						new {ControllerName = HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString()})
 					</div>
 				</div>
 			</header>
