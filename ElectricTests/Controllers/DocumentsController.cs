@@ -1,6 +1,9 @@
 ﻿using System.Web.Mvc;
 using ElectricTests.Model;
 using ElectricTests.Repository;
+using System.Data.Entity.Validation;
+using System.Text;
+using ElectricTests.Helpers;
 
 namespace ElectricTests.Controllers {
     public class DocumentsController : Controller {
@@ -38,24 +41,30 @@ namespace ElectricTests.Controllers {
         [HttpPost]
         [Authorize(Users = "Aleksandr")]
         public ActionResult Add(UnformattedDocument document) {
-            if (ModelState.IsValid) {
-                //Format text to formatted document object
-                var formattedDocument = new FormattedDocument(
-                    document.Title,
-                    document.WithSections,
-                    (new STProcessor()).GetParagraphsFromText(document.Text));
 
-                FormattedDocument savedDocument;
+            if (ModelState.IsValid) {
+
+            //Format text to formatted document object
+            FormattedDocument formattedDocument = new FormattedDocument(
+                document.Title,
+                document.WithSections,
+                (new STProcessor()).GetParagraphsFromText(document.Text));
 
                 using (var pContext = new ProjectContext()) {
-                    //Save to db and get id
-                    pContext.FormattedDocuments.Add(formattedDocument);
-                    pContext.SaveChanges();
                     
-                    //Get new document to show it in Details controller
-                    savedDocument = _repository.GetDocumentById(formattedDocument.Id);
+                    pContext.FormattedDocuments.Add(formattedDocument);
+                    try {
+                        //Save to db
+                        pContext.SaveChanges();
+                    } catch (DbEntityValidationException e) {
+
+                        //All formattedDocument inner objects entity validation 
+                        ModelState.AddModelError("", InnerValidationHelper.GetEntityInnerValidationErrors(e));
+                        return View();
+                    }
                 }
-                return View("Details", savedDocument);
+                //Get new document to show it in Details controller
+                return RedirectToAction("Details", new {id = formattedDocument.Id });
             }
             return View();
         }

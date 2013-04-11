@@ -110,7 +110,7 @@ function openFormWithoutParagraph() {
     //    }
     //});
     emptyForm();
-    $("#addQuestionFormWithoutParagraph").reveal();
+    $("#addQuestionFormWithoutParagraph").foundation('reveal', 'open');
 }
 
 function withNewLines(text) {
