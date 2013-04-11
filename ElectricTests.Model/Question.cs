@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Web.Mvc;
 
 namespace ElectricTests.Model
 {
@@ -32,7 +33,7 @@ namespace ElectricTests.Model
 			Title = title;
 			AnswerDescription = answerDescription;
 		}
-
+        [HiddenInput(DisplayValue = false)]
 		public int Id { get; set; }
 
 		public int? FormattedDocumentId { get; set; }

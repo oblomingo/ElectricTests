@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Web.Mvc;
 
 namespace ElectricTests.Model
 {
@@ -15,11 +16,12 @@ namespace ElectricTests.Model
 			ParentNumber = parentNumber;
 			Paragraphs = new HashSet<Paragraph>();
 		}
-		
+		[HiddenInput(DisplayValue=false)]
 		public int Id { get; set; }
 		public int Number { get; set; }
 		public string Text { get; set; }
 		public int FormattedDocumentId { get; set; }
+        [HiddenInput(DisplayValue = false)]
 		public int? SectionId { get; set; }
 		public int? ParagraphId { get; set; }
 

@@ -7,7 +7,7 @@
 @section featured {
 	<section class="twelve columns">
 		<hr/>
-		<p>Šitame skyriuje rasite normatyvinius aktus, taisykles ir tvarkas. Taip pat čia galite užduoti klausimą tam tikram taisyklių punktui. Norint užduoti klausimą reikia užeiti į vieną iš žemiau išvardintų dokumentų, pelytės pagalba atsistoję ant vieno iš taisyklės punkto dešynėje pusėje pamatysite ženkliuką su pliusu, paspaudus jį į galite užduoti klausimą būtent dėl jūsų pasirento punkto. Arba galite <a href="javascript:openFormWithoutParagraph()">čia</a> užduoti klausimą nesusijusį su šitais dokumentais.</p>
+		<p>Šitame skyriuje rasite normatyvinius aktus, taisykles ir tvarkas. Taip pat čia galite užduoti klausimą tam tikram taisyklių punktui. Norint užduoti klausimą reikia užeiti į vieną iš žemiau išvardintų dokumentų, pelytės pagalba atsistoję ant vieno iš taisyklės punkto dešynėje pusėje pamatysite ženkliuką su pliusu, paspaudus jį į galite užduoti klausimą būtent dėl jūsų pasirento punkto. Arba galite <a  data-reveal-id="addQuestionFormWithoutParagraph" href="javascript:openFormWithoutParagraph()">čia</a> užduoti klausimą nesusijusį su šitais dokumentais.</p>
 		@foreach(var document in Model) {
 			@Html.ActionLink(document.Title, "Details", new { id=document.Id })<br/>
 		}

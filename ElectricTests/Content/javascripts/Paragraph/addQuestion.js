@@ -11,15 +11,9 @@ window.onload = function() {
 };
 
 //Empty form and add paragraph number and text to form
-
 function openForm(paragraphId, paragraphNumber) {
-    //Foundation function to show modal window
-    $("#addQuestionForm").reveal({
-        "open": function() {
-            emptyForm();
-            addParagraphToForm(paragraphId);
-        }
-    });
+    emptyForm();
+    addParagraphToForm(paragraphId);
 }
 
 //Empty all form input fields
@@ -110,11 +104,13 @@ function checkForEmpty(elementId) {
 }
 
 function openFormWithoutParagraph() {
-    $("#addQuestionFormWithoutParagraph").reveal({
-        "open": function() {
-            emptyForm();
-        }
-    });
+    //$("#addQuestionFormWithoutParagraph").reveal({
+    //    "open": function() {
+    //        
+    //    }
+    //});
+    emptyForm();
+    $("#addQuestionFormWithoutParagraph").reveal();
 }
 
 function withNewLines(text) {

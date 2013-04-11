@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Web.Mvc;
 
 namespace ElectricTests.Model
 {
@@ -8,6 +9,7 @@ namespace ElectricTests.Model
 		public Test() {
 			Questions = new HashSet<Question>();
 		}
+        [HiddenInput(DisplayValue = false)]
 		public int Id { get; set; }
 		[Required(ErrorMessage = "Tuščias testo pavadinimo laukas")]
 		public string Title { get; set; }
