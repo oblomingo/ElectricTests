@@ -2,7 +2,6 @@
 using ElectricTests.Model;
 using ElectricTests.Repository;
 using System.Data.Entity.Validation;
-using System.Text;
 using ElectricTests.Helpers;
 
 namespace ElectricTests.Controllers {
@@ -45,7 +44,7 @@ namespace ElectricTests.Controllers {
             if (ModelState.IsValid) {
 
             //Format text to formatted document object
-            FormattedDocument formattedDocument = new FormattedDocument(
+            var formattedDocument = new FormattedDocument(
                 document.Title,
                 document.WithSections,
                 (new STProcessor()).GetParagraphsFromText(document.Text));
@@ -75,7 +74,7 @@ namespace ElectricTests.Controllers {
         /// <param name="id"></param>
         /// <returns></returns>
         public ActionResult Details(int id) {
-            Document document = _repository.GetDocumentById(id);
+            FormattedDocument document = _repository.GetDocumentById(id);
             if (document == null) {
                 return RedirectToAction("Index");
             }
