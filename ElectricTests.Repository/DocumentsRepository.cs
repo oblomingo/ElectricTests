@@ -38,12 +38,13 @@ namespace ElectricTests.Repository
 
                 //Set navigation properties to null to avoid javascript error 
                 //"A circular reference was detected while serializing an object of type"
-				if (document != null) 
-					document.Sections = null;
+                if (document != null)
+                    document.Sections = null;
 
-				if (document != null) {
-					document.Paragraphs = GetParagraphsByDocumentId(id);
-				}
+                if (document != null)
+                {
+                    document.Paragraphs = GetParagraphsByDocumentId(id);
+                }
 				return document;
 				
 			}

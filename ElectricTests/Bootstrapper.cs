@@ -7,7 +7,6 @@ namespace ElectricTests {
     public static class Bootstrapper {
         public static void Initialise() {
             IUnityContainer container = BuildUnityContainer();
-
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
 

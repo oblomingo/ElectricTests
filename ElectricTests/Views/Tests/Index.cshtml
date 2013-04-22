@@ -7,14 +7,14 @@
 		<hr/>      
 		@foreach (Test test in Model) {
 			<div class="row"> 
-				<div class="large-10 columns">@Html.ActionLink(test.Title, "Show", new {id = test.Id})</div>
-				@if (Request.IsAuthenticated) {
-					<div class="large-2 columns">@Html.ActionLink("Prideti klausymus", "AddQuestions", new {id = test.Id})</div>
+				<div class="ten columns">@Html.ActionLink(test.Title, "Show", new {id = test.Id})</div>
+				@if (User.IsInRole("Administrator")) {
+					<div class="two columns">@Html.ActionLink("Prideti klausymus", "AddQuestions", new {id = test.Id})</div>
 				}
 			</div>
 		}
 		<hr/>
-		@if (Request.IsAuthenticated) {
+		@if (User.IsInRole("Administrator")) {
 			@Html.ActionLink("Sukurti testavimą", "Add")
 		} 
 	</section>

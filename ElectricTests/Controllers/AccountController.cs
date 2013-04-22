@@ -80,7 +80,13 @@ namespace ElectricTests.Controllers
                 // Attempt to register the user
                 try
                 {
+                    const string userRole = "User";
+
+                    if (!Roles.RoleExists(userRole))
+                        Roles.CreateRole(userRole);
+
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
+                    Roles.AddUserToRole(model.UserName, userRole);
                     WebSecurity.Login(model.UserName, model.Password);
                     return RedirectToAction("Index", "Home");
                 }

@@ -13,7 +13,7 @@ namespace ElectricTests.Controllers {
 
         //
         // GET: /Questions/
-        [Authorize(Users="Aleksandr")]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Index() {
             return View(_repository.GetAllQuestions());
         }
@@ -40,6 +40,7 @@ namespace ElectricTests.Controllers {
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [Authorize(Roles = "Administrator")]
         public ActionResult Edit(int id) {
             return View(_repository.GetQuestionById(id));
         }
@@ -50,7 +51,7 @@ namespace ElectricTests.Controllers {
         /// <param name="question"></param>
         /// <returns></returns>
         [HttpPost]
-        [Authorize(Users = "Aleksandr")]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Edit(Question question) {
             if (ModelState.IsValid) {
                 if (_repository.SaveQuestionChanges(question))
@@ -64,7 +65,7 @@ namespace ElectricTests.Controllers {
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Authorize(Users = "Aleksandr")]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Delete(int id) {
             _repository.DeleteQuestion(id);
             return RedirectToAction("Index", "Questions");

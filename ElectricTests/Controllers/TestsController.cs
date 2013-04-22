@@ -22,7 +22,7 @@ namespace ElectricTests.Controllers
 		/// </summary>
 		/// <returns></returns>
 		[HttpGet]
-		[Authorize(Users = "Aleksandr")]
+        [Authorize(Roles = "Administrator")]
 		public ActionResult Add () {
 			return View();
 		}
@@ -33,7 +33,7 @@ namespace ElectricTests.Controllers
 		/// <param name="test"></param>
 		/// <returns></returns>
 		[HttpPost]
-		[Authorize(Users = "Aleksandr")]
+        [Authorize(Roles = "Administrator")]
 		public ActionResult Add (Test test) {
 			if (ModelState.IsValid) {
 				using (var pContext = new ProjectContext()) {
@@ -51,7 +51,7 @@ namespace ElectricTests.Controllers
 		/// <param name="id"></param>
 		/// <returns></returns>
 		[HttpGet]
-		[Authorize(Users = "Aleksandr")]
+        [Authorize(Roles = "Administrator")]
 		public ActionResult AddQuestions (int id) {
 			return View(_repository.GetTestAndAllQuestions(id));
 		}
@@ -62,7 +62,7 @@ namespace ElectricTests.Controllers
 		/// <param name="test"></param> 
 		/// <returns></returns>
 		[HttpPost]
-		[Authorize(Users = "Aleksandr")]
+        [Authorize(Roles = "Administrator")]
 		public ActionResult AddQuestions (Test test) {
 			if (ModelState.IsValid) {
 				_repository.SaveTestToDb(test);

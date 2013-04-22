@@ -27,7 +27,7 @@ namespace ElectricTests.Controllers {
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Authorize(Users = "Aleksandr")]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Add() {
             return View();
         }
@@ -38,7 +38,7 @@ namespace ElectricTests.Controllers {
         /// <param name="document"></param>
         /// <returns></returns>
         [HttpPost]
-        [Authorize(Users = "Aleksandr")]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Add(UnformattedDocument document) {
 
             if (ModelState.IsValid) {
