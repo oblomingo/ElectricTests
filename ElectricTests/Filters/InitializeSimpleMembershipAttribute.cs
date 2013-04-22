@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Threading;
 using System.Web.Mvc;
+using System.Web.Security;
 using ElectricTests.Repository;
 using WebMatrix.WebData;
 
@@ -34,6 +35,21 @@ namespace ElectricTests.Filters {
 
                     WebSecurity.InitializeDatabaseConnection("ProjectContext", "UserProfile", "UserId", "UserName",
                                                              autoCreateTables: true);
+
+                    const string adminRole = "Administrator";
+                    const string adminName = "Administrator";
+
+                    if (!Roles.RoleExists(adminRole))
+                    {
+                        Roles.CreateRole(adminRole);
+                    }
+
+                    if (!WebSecurity.UserExists(adminName))
+                    {
+                        WebSecurity.CreateUserAndAccount(adminName, "password1");
+                        Roles.AddUserToRole(adminName, adminRole);
+                    }
+
                 } catch (Exception ex) {
                     throw new InvalidOperationException(
                         "The ASP.NET Simple Membership database could not be initialized." +

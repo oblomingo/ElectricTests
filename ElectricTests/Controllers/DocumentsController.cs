@@ -2,7 +2,6 @@
 using ElectricTests.Model;
 using ElectricTests.Repository;
 using System.Data.Entity.Validation;
-using System.Text;
 using ElectricTests.Helpers;
 
 namespace ElectricTests.Controllers {
@@ -28,7 +27,7 @@ namespace ElectricTests.Controllers {
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Authorize(Users = "Aleksandr")]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Add() {
             return View();
         }
@@ -39,13 +38,13 @@ namespace ElectricTests.Controllers {
         /// <param name="document"></param>
         /// <returns></returns>
         [HttpPost]
-        [Authorize(Users = "Aleksandr")]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Add(UnformattedDocument document) {
 
             if (ModelState.IsValid) {
 
             //Format text to formatted document object
-            FormattedDocument formattedDocument = new FormattedDocument(
+            var formattedDocument = new FormattedDocument(
                 document.Title,
                 document.WithSections,
                 (new STProcessor()).GetParagraphsFromText(document.Text));
@@ -75,7 +74,7 @@ namespace ElectricTests.Controllers {
         /// <param name="id"></param>
         /// <returns></returns>
         public ActionResult Details(int id) {
-            Document document = _repository.GetDocumentById(id);
+            FormattedDocument document = _repository.GetDocumentById(id);
             if (document == null) {
                 return RedirectToAction("Index");
             }

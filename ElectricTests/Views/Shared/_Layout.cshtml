@@ -38,8 +38,10 @@
 						using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" })) {
 							@Html.AntiForgeryToken()
 							<ul class="link-list right">
-								<li>@Html.ActionLink("Nustatymai", "Manage", "Account")</li>
-								<li>@Html.ActionLink("Klausimai", "Index", "Questions")</li>
+                                <li>@Html.ActionLink("Nustatymai", "Manage", "Account")</li>
+@*                                @if(Roles.IsUserInRole("Administrator")) {
+                                    <li>@Html.ActionLink("Klausimai", "Index", "Questions")</li>
+                                }*@
 								<li><a href="javascript:document.getElementById('logoutForm').submit()">Išeiti</a></li>
 							</ul>
 						}

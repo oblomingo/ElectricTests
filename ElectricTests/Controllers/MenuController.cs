@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace ElectricTests.Controllers
@@ -15,15 +12,16 @@ namespace ElectricTests.Controllers
         /// <returns></returns>
         [ChildActionOnly]
         public ActionResult Show (string controllerName = null) {
+            //Controller name to mark current menu button
             ViewBag.ControllerName = controllerName;
             
             //All menu buttons names with their controller names
-            Dictionary<string, string> menu = new Dictionary<string, string>();
-            menu.Add("Pagrindinis", "Home");
-            menu.Add("Dokumentai", "Documents");
-            menu.Add("Testavimas", "Tests");
-            menu.Add("Pagalba", "Help");
-            
+            var menu = new Dictionary<string, string> {
+                {"Pagrindinis", "Home"},
+                {"Dokumentai", "Documents"},
+                {"Testavimas", "Tests"},
+                {"Pagalba", "Help"}
+            };
             return PartialView(menu);
         }
     }

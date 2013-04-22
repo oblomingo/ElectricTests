@@ -1,4 +1,4 @@
-﻿@model List<ElectricTests.Model.FormattedDocument>
+﻿@model List<FormattedDocument>
 <script src="~/Scripts/jquery-1.7.1.min.js"></script>
 <script src="~/Scripts/jquery-ui-1.8.20.min.js"></script>
 <script src="~/Content/javascripts/jquery.foundation.reveal.js"></script>
@@ -19,7 +19,7 @@
 			@Html.ActionLink(document.Title, "Details", new { id=document.Id })<br/>
 		}
 		<hr/>
-		@if (Request.IsAuthenticated) { 
+		@if (User.IsInRole("Administrator")) { 
 			@Html.ActionLink("Prideti dokumentą", "Add")
 		}
 	</section>

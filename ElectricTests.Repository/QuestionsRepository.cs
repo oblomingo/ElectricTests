@@ -46,7 +46,7 @@ namespace ElectricTests.Repository {
 
 
         /// <summary>
-        /// Get test and all questions
+        /// Get test and all questions, set bool property InThisTest true to this test questions
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
