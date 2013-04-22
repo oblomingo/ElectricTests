@@ -39,9 +39,9 @@
 							@Html.AntiForgeryToken()
 							<ul class="link-list right">
                                 <li>@Html.ActionLink("Nustatymai", "Manage", "Account")</li>
-@*                                @if(Roles.IsUserInRole("Administrator")) {
+                                @if(Roles.IsUserInRole("Administrator")) {
                                     <li>@Html.ActionLink("Klausimai", "Index", "Questions")</li>
-                                }*@
+                                }
 								<li><a href="javascript:document.getElementById('logoutForm').submit()">Išeiti</a></li>
 							</ul>
 						}

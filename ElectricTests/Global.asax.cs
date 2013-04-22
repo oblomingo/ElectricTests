@@ -7,6 +7,9 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using ElectricTests;
+using Microsoft.Practices.Unity;
+using ElectricTests.Controllers.Api;
+using ElectricTests.Repository;
 
 namespace ElectricTests
 {
@@ -15,6 +18,13 @@ namespace ElectricTests
 
     public class MvcApplication : System.Web.HttpApplication
     {
+        void ConfigureApi(HttpConfiguration config)
+        {
+            var unity = new UnityContainer();
+            unity.RegisterType<DocumentsController>();
+            unity.RegisterType<IDocumentsRepository, DocumentsRepository>(new HierarchicalLifetimeManager());
+            config.DependencyResolver = new IoCContainer(unity);
+        }
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -25,6 +35,7 @@ namespace ElectricTests
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
             Bootstrapper.Initialise();
+            ConfigureApi(GlobalConfiguration.Configuration);
         }
     }
 }
