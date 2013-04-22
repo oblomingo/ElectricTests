@@ -12,11 +12,7 @@ namespace ElectricTests.Model
 
 		[DataType(DataType.MultilineText)]
 		[Required(ErrorMessage = "Tuščias dokumento teksto laukas")]
+        [StringLength(1000000, ErrorMessage = "Tekstas neturi buti ilgesnis 1 000 000 simbolių")]
 		public string Text { get; set; }
-
-		[Required(ErrorMessage = "Tuščias dokumento pavadinimo laukas")]
-		public string Title { get; set; }
-		
-		public bool WithSections { get; set; }
 	}
 }

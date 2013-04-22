@@ -11,11 +11,16 @@ namespace ElectricTests.Model
 		}
         [HiddenInput(DisplayValue = false)]
 		public int Id { get; set; }
-		[Required(ErrorMessage = "Tuščias testo pavadinimo laukas")]
+		
+        [Required(ErrorMessage = "Tuščias testo pavadinimo laukas")]
+        [StringLength(500, ErrorMessage = "Pavadinimas neturi buti ilgesnis 500 simbolių")]
 		public string Title { get; set; }
+
 		[Required(ErrorMessage = "Tuščias klausymų skaičiaus laukas")]
+        [RegularExpression(@"^\d+$", ErrorMessage = "Klausymų skaičius vienam kartui - turi būti skaičius")]
 		public int OneTestQuestionsNumber { get; set; }
-		public bool IsAvaible { get; set; }
+
+        public bool IsAvaible { get; set; }
 
 		[NotMapped]
 		public int AllQuestionsNumber { get; set; }
