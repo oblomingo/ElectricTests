@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Serialization;
 using System.Web.Mvc;
 
 namespace ElectricTests.Model
 {
+    [DataContract]
 	public class Paragraph {
 
 		public Paragraph () {
@@ -16,9 +18,12 @@ namespace ElectricTests.Model
 			ParentNumber = parentNumber;
 			Paragraphs = new HashSet<Paragraph>();
 		}
+        [DataMember]
 		[HiddenInput(DisplayValue=false)]
 		public int Id { get; set; }
+        [DataMember]
 		public int Number { get; set; }
+        [DataMember]
 		public string Text { get; set; }
 		public int FormattedDocumentId { get; set; }
         [HiddenInput(DisplayValue = false)]
