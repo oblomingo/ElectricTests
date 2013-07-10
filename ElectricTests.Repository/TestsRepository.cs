@@ -18,7 +18,8 @@ namespace ElectricTests.Repository {
         /// </summary>
         /// <returns></returns>
         public List<Test> GetAllTests() {
-            using (var projectContext = new ProjectContext()) return projectContext.Tests.Include("Questions").ToList();
+            using (var projectContext = new ProjectContext()) 
+                return projectContext.Tests.Include("Questions").ToList();
         }
 
         /// <summary>

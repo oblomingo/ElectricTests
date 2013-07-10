@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
 using System.Web.Mvc;
@@ -21,13 +22,22 @@ namespace ElectricTests.Model
         [DataMember]
 		[HiddenInput(DisplayValue=false)]
 		public int Id { get; set; }
-        [DataMember]
+
+		[Display(Name = "Paragrafo numeris")]
+		[Range(1, 10000000, ErrorMessage = "Paragrafo numeris neturi buti didesnis už 10000000")]
 		public int Number { get; set; }
-        [DataMember]
+
+		[Display(Name = "Paragrafo tekstas")]
+		[StringLength(50000, ErrorMessage = "Paragrafo tekstas neturi buti ilgesnis 50000 simbolių")]
 		public string Text { get; set; }
+		
 		public int FormattedDocumentId { get; set; }
+
+		//Document can be without sections
         [HiddenInput(DisplayValue = false)]
 		public int? SectionId { get; set; }
+		
+		//Paragraph can be withaout parrent
 		public int? ParagraphId { get; set; }
 
         //Parent paragraph number (not id)

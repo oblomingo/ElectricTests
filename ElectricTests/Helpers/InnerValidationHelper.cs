@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.Validation;
-using System.Linq;
+﻿using System.Data.Entity.Validation;
 using System.Text;
-using System.Web;
 
 namespace ElectricTests.Helpers
 {
@@ -16,7 +12,7 @@ namespace ElectricTests.Helpers
         /// <returns></returns>
         public static string GetEntityInnerValidationErrors(DbEntityValidationException e)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             foreach (var failure in e.EntityValidationErrors)
             {
                 sb.AppendFormat("{0} klaida", failure.Entry.Entity.GetType());
