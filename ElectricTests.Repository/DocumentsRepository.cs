@@ -12,6 +12,8 @@ namespace ElectricTests.Repository
 
 	public class DocumentsRepository : IDocumentsRepository {
 
+        public DocumentsRepository() {}
+
 		/// <summary>
 		/// Get all formatted documents without paragraphs
 		/// </summary>

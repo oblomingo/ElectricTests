@@ -238,6 +238,7 @@
     <Content Include="Content\javascripts\modernizr.foundation.js" />
     <Content Include="Content\javascripts\Paragraph\addQuestion.js" />
     <Content Include="Content\javascripts\Paragraph\showTest.js" />
+    <Content Include="Content\javascripts\TestPage.html" />
     <Content Include="Content\stylesheets\app.css" />
     <Content Include="Content\stylesheets\foundation.css" />
     <Content Include="Content\stylesheets\foundation.min.css" />

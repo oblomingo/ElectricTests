@@ -35,6 +35,7 @@
 			@Html.HiddenFor(model => model.FormattedDocumentId)
 			@Html.HiddenFor(model => model.ParagraphId)
 			<input value="Įkelti klausymą" class="button" onclick="validateAndSendObject($('form').serialize(), false);"/>
+            <input value="Test" class="button" onclick="modal();"/>
 		</fieldset>
 	}		
 	<a class="close-reveal-modal">x</a>
@@ -46,8 +47,14 @@
 		, type: 'POST'
 		, data: question
 		, success: function (savedToDB) {
+		    $("#addQuestionForm").reveal();
 			$("#infoMessageWindow").reveal();
 		}
 	});
-}
+	}
+
+    function modal() {
+        $("#addQuestionForm").reveal();
+        $("#infoMessageWindow").show();
+    }
 </script>
