@@ -57,9 +57,14 @@ namespace ElectricTests.Repository {
         private Test SetQuestionNavPropToNull(Test test) {
             foreach (Question question in test.Questions) {
                 //Set question navigation properties to null
-                question.Tests = null;
-                question.FormattedDocument.Paragraphs = null;
-                question.FormattedDocument.Sections = null;
+                if (question.Tests != null)
+                    question.Tests = null;
+
+                if (question.FormattedDocument != null)
+                {
+                    question.FormattedDocument.Paragraphs = null;
+                    question.FormattedDocument.Sections = null;
+                }
 
                 //we have some questions without paragraphs
                 if (question.Paragraph == null)

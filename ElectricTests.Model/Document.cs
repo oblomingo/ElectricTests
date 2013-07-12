@@ -11,8 +11,8 @@ namespace ElectricTests.Model {
 
         [Required(ErrorMessage = "Tuščias dokumento pavadinimo laukas")]
         [StringLength(500, ErrorMessage = "Pavadinimas neturi buti ilgesnis 500 simbolių")]
-		public string Title { get; set; }
+        public string Title { get; set; }
 		
-		public bool WithSections { get; set; }
+        public bool WithSections { get; set; }
 	}
 }

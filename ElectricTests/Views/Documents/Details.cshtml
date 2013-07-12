@@ -1,9 +1,9 @@
 ﻿@using System.Web.Script.Serialization
 @model FormattedDocument
-<script src="~/Scripts/jquery-1.7.1.min.js"></script>
-<script src="~/Scripts/jquery-ui-1.8.20.min.js"></script>
-@Scripts.Render("~/Content/javascripts/foundation.min.js")
-@Scripts.Render("~/Content/javascripts/Paragraph/addQuestion.js")
+
+<script src="~/Content/javascripts/jquery.js"></script>
+<script src="~/Content/javascripts/jquery.foundation.reveal.js"></script>
+<script src="~/Content/javascripts/Paragraph/addQuestion.js"></script>
 <script type="text/javascript"> var paragraphs = @Html.Raw((new JavaScriptSerializer().Serialize(Model.Paragraphs))); </script>
 
 @{
